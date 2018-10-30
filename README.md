@@ -19,7 +19,7 @@ Breakthrough Listen
   * B. Installing
   * C. Running
 * III. Input
-  * 0. Allowed metallicity values
+  * &#48;. Allowed metallicity values
   * A. Model stellar spectra
   * B. Isochrones
   * C. Star formation histories
@@ -126,7 +126,7 @@ or whatever file you named the executable after compiling it.  No command line p
 
 ## 0. Allowed metallicity values
 
-The three values of metallicity for which Sunscreenproduces results are 0.1 Z<sub>sun</sub>, 1.0 Z<sub>sun</sub>, and 2.0 Z<sub>sun</sub>.
+The three values of metallicity for which Sunscreen produces results are 0.1 Z<sub>sun</sub>, 1.0 Z<sub>sun</sub>, and 2.0 Z<sub>sun</sub>.
 
 Changing them requires
 1. Adding the subdirectories to the output directory structure (see the included `CreateOutputDirectories.sh` script).
@@ -143,7 +143,7 @@ I have processed the data of these spectra into a form that Sunscreen can read. 
 ```
 LejeuneSpectrum.logZ%+.2f.Teff+%.0f.logg%+.2f
 ```
-where metallicity (logZ) is given relative to Solar on a base-10 log scale (so Solar metallicity is +0.00, 1/10 Solar is -1.00), also denoted as [M/H]; temperature (Teff) is given without leading zeros in Kelvin; and surface gravity (logg) is given in cgs units, cm/s<sup>2</sup>.  The format of the file is a text file with two columns: wavelength in cm, and emergent specific flux from the stellar surface (F<sub>nu</sub>) in erg/cm<sup>2</sup>/s/Hz.  The included `ExtractLejeuneSpectra.sh` script in the `LejeuneSpectra` directory can be used to create these files from downloadable BaSeL data.
+where metallicity (logZ) is given relative to Solar on a base-10 log scale (so Solar metallicity is +0.00, 1/10 Solar is -1.00), also denoted as [M/H]; temperature (Teff) is given without leading zeros in Kelvin; and surface gravity (logg) is given in cgs units, cm/s<sup>2</sup>.  The format of the file is a text file with two columns: wavelength in cm, and emergent specific flux from the stellar surface (F<sub>&nu;</sub>) in erg/cm<sup>2</sup>/s/Hz.  The included `ExtractLejeuneSpectra.sh` script in the `LejeuneSpectra` directory can be used to create these files from downloadable BaSeL data.
 
 Note that **all** the spectra are assumed to use the same wavelengths in their spectra.  There are 1,221 wavelengths given in each spectrum, all identical from file to file, and they have been listed in `LejeuneSpectra/lambda-LejeuneSpectra.txt`.  Sunscreen reads this file, and uses a global constant `NLam` set to 1,221 in the `#define NLam` line.
 
@@ -176,7 +176,7 @@ Some things to be aware of:
 * The ages in these files are taken directly from the `output*` files from the CMD webserver.  As such, they only have three significant digits &ndash; i.e., they are not calculated from the logt value in the file name.
 * Solar metallicity is assumed to be 0.0152, the default value for the current iteration of CMD.
 * Stellar radius is calculated from the star's surface gravity and current mass, under the star is spherical.
-* Sunscreen actually disregards the value of log L given in these files to ensure physical consistency.  Instead, Sunscreen calculate L using the Steffan-Boltzmann law: L = 4 pi R<sup>2</sup> * sigma<sub>SB</sub> T<sub>eff</sub><sup>4</sup>
+* Sunscreen actually disregards the value of log L given in these files to ensure physical consistency.  Instead, Sunscreen calculate L using the Steffan-Boltzmann law: L = 4 pi R<sup>2</sup> &sigma;<sub>SB</sub> T<sub>eff</sub><sup>4</sup>
 * The CMD isochrones for large t have a terminating point that correspond to a post-AGB star.  The luminosity of these "stars" is set to log L = -9.999, but the other physical parameters indicate that they are bright and blue.  According to the CMD 3.0 FAQ, they are only included to signal the end of the isochrone to some codes.  I regard them as spurious, and they are not included when ExtractIsochrones is run.
 * The CMD FAQ indicates that "stage" is only a rough indication. I've noticed that stars of mass around ~15 M<sub>sun</sub> seem to remain in the pre-MS phase for much longer than stars of much higher or lower stellar masses.
 
@@ -369,7 +369,7 @@ BottomHeavy
 ## B. Spectra
 
 ### 1. File names
-Sunscreen calculates the specific luminosity (L<sub>nu</sub>) of the model galaxy (and its putative Dyson spheres) and writes them to files in the subdirectory specified by type of result, IMF, and then metallicity (see IV-A).  The name of the spectrum files has the format:
+Sunscreen calculates the specific luminosity (L<sub>&nu;</sub>) of the model galaxy (and its putative Dyson spheres) and writes them to files in the subdirectory specified by type of result, IMF, and then metallicity (see IV-A).  The name of the spectrum files has the format:
 ```
 %s_%s_Screened_Spectrum.logZ%+.2f.%s.%s.logt+%.2f.%s_%s.txt
 ```
@@ -402,7 +402,7 @@ Again, the parameters in that name are [M/H], IMF name, SFH name, and base 10 lo
 ### 2. Format
 The format of the spectra are relatively simple text files.  The spectrum is output at the same wavelength used by the input BaSeL stellar model spectra (section III-A), which are listed in `LejeuneSpectra/lambda-LejeuneSpectra.txt`.  The first column of the file are these wavelengths.
 
-The next column is the specific luminosity (L<sub>nu</sub>) of the galaxy, after taking into account any screening of its stars.  It has units of erg/s/Hz.  
+The next column is the specific luminosity (L<sub>&nu;</sub>) of the galaxy, after taking into account any screening of its stars.  It has units of erg/s/Hz.  
 
 After that are possibly more columns, which are the specific luminosity of the galaxy's Dyson spheres, which are assumed to capture and reradiate all the light of the screened stars at a particular temperature.  By default, Sunscreen gives the thermal emission from T = 1000 K and T = 300 K Dyson spheres.  These are also supposed to radiate with a blackbody spectrum.  
 
