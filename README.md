@@ -557,7 +557,7 @@ Although they are not calculated by default when Sunscreen is run, Sunscreen doe
 ## E. Citing Sunscreen
 
 Cite this paper:
-* Lacki, B. C., "Sunscreen: Photometric Signatures of Galaxies Partially Cloaked in Dyson Sphere", 2018, arXiv:1807.00077 
+* Lacki, B. C., "Sunscreen: Photometric Signatures of Galaxies Partially Cloaked in Dyson Sphere", 2019, PASP 131, 024102 (arXiv:1807.00077)
 
 
 ## F. Support and acknowledgements
